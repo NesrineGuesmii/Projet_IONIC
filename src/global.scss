@@ -24,3 +24,32 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+/** Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
+
+
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.text-secondary {
+    color: rgb(151, 149, 149);
+}
+
+.form-control {
+    margin: 2rem;
+    
+    border: solid rgba(182, 182, 182, 0.597) 2px;
+    border-radius: 10px;    
+}
+
+.btn {
+    margin: 2rem;
+}
+
+.text-center {
+    text-align: center;
+}

@@ -25,3 +25,32 @@
 #container a {
   text-decoration: none;
 }
+
+.bord {
+  border: solid red;
+}
+
+
+.header {
+  // transform: translateY(50%);
+  margin-top: 2rem;
+}
+
+.logo {
+  font-size: 100px;
+}
+
+.divided {
+  margin: 0;
+  margin-top: 0.9rem;
+  width: 100px;
+  border: solid 1px gray;
+}
+
+.text-secondary {
+  font-size: 10;
+}
+
+a {
+  text-decoration: none;
+}
