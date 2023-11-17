@@ -1,0 +1,7 @@
+{
+  "name": "addversting",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
