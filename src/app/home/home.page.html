@@ -4,6 +4,9 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>All Ads</ion-title>
+    <ion-buttons slot="end" routerLink="/profil">
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,19 +16,19 @@
     <ion-row>
       <ion-col size="12">
         <ion-segment [scrollable]="true" color="transparent">
-          <ion-segment-button value="home">
-            <ion-button color="primary">Categ One</ion-button>            
+          <ion-segment-button class="category" value="home" id="catg" (click)="AnimationSwitch('catg')">
+            <ion-button fill="outline" name="home">Categ One</ion-button>            
           </ion-segment-button>
-          <ion-segment-button value="home2">
+          <ion-segment-button class="category" value="home2" id="catg2" (click)="AnimationSwitch('catg2')">
+            <ion-button fill="outline" name="home2">Categ Two</ion-button>            
+          </ion-segment-button>
+          <ion-segment-button class="category" value="home2">
             <ion-button fill="outline" >Categ Two</ion-button>            
           </ion-segment-button>
-          <ion-segment-button value="home2">
+          <ion-segment-button class="category" value="home2">
             <ion-button fill="outline" >Categ Two</ion-button>            
           </ion-segment-button>
-          <ion-segment-button value="home2">
-            <ion-button fill="outline" >Categ Two</ion-button>            
-          </ion-segment-button>
-          <ion-segment-button value="home2">
+          <ion-segment-button class="category" value="home2">
             <ion-button fill="outline" >Categ Two</ion-button>            
           </ion-segment-button>
         </ion-segment>
@@ -38,8 +41,8 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6">
-        <ion-card>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+        <ion-card routerLink="/ad-details">
+          <img alt="Silhouette of mountains" src="../../assets/imgs/card-media.png" />
           <ion-card-header>
             <ion-card-title>Card Title</ion-card-title>
             <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
@@ -48,7 +51,7 @@
       </ion-col>
       <ion-col size="6">
         <ion-card>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+          <img alt="Silhouette of mountains" src="../../assets/imgs/card-media.png" />
           <ion-card-header>
             <ion-card-title>Card Title</ion-card-title>
             <ion-card-subtitle>Card Subtitle</ion-card-subtitle>

@@ -1,0 +1,21 @@
+.img-fluid {
+    height: 30vh;
+    width: 100%;
+}
+
+.header-img {
+    z-index: 0;
+}
+
+.card-text {
+    height: 50vh;
+    overflow-y: scroll;
+    z-index: 1;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card-button {
+    padding: 1rem;
+}

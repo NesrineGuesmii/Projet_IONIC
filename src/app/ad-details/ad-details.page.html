@@ -1,13 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>ad-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detail {{ titleAds }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ad-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ 
+  <ion-grid class="p-0 header-img">
+    <img src="../../assets/imgs/card-media.png" class="img-fluid" alt="" srcset="">
+  </ion-grid>
+
+
+  <ion-grid class="card-text">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit mollitia hic sit fuga enim exercitationem dolorum facere quae, officiis minima unde est dicta explicabo saepe alias, culpa quasi fugiat. Sequi.
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor perspiciatis aspernatur, obcaecati ipsam officiis consequuntur reiciendis asperiores modi maxime magnam vero itaque commodi perferendis eveniet libero quia explicabo dolorem. Atque.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda eos, iste atque, mollitia dolores est exercitationem odio quis laborum illum, at dolor ipsum modi? Cum odit sapiente suscipit fugiat ipsum.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam rem voluptatem doloribus ullam nobis laudantium nostrum mollitia et ratione eum autem, perferendis fugiat debitis illum provident tempore explicabo officiis perspiciatis?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde dicta laudantium omnis ex tempore ad aut adipisci iure sint vero optio quis culpa odio ipsa doloribus hic accusantium, minus quo.
+    </p>
+    <small color="secondary">Le 06/07/2000, &nbsp;<strong>ALBERT TUMOR</strong></small>
+  </ion-grid>
+
+  <ion-grid class="card-button">
+    <ion-button expand="block" color="warning">
+      Edit
+      <ion-icon name="pencil-outline" slot="end"></ion-icon>
+    </ion-button>
+    <ion-button expand="block" color="danger">Delete</ion-button>
+  </ion-grid>
+
+
 </ion-content>

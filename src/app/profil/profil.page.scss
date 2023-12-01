@@ -1,0 +1,23 @@
+.bord {
+    border: solid;
+}
+
+ion-label strong {
+    display: block;
+  
+    max-width: calc(100% - 60px);
+  
+    overflow: hidden;
+  
+    text-overflow: ellipsis;
+  }
+  
+  ion-label ion-note {
+    font-size: 0.9rem;
+  }
+
+
+  .divider {
+    margin-top: 1rem;
+    border: solid rgb(226, 226, 226) 1px;
+  }

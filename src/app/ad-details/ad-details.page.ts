@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdDetailsPage implements OnInit {
 
+  titleAds: string = "";
+  
   constructor() { }
 
   ngOnInit() {
