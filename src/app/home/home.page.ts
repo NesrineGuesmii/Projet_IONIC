@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { categories } from '../data/Category';
+import { AdsService } from '../services/ads.service';
+import { Ads } from '../models/Ads';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +10,15 @@ import { categories } from '../data/Category';
 })
 export class HomePage {
 catgs = categories;
+ads!: Array<Ads>;
 
-  constructor() {}
+  constructor(private adsService: AdsService) {}
 
-
+  ngOnInit() {
+    this.getAds();
+  }
 
   // deleted that
-
   AnimationSwitch(mycatg: any) {
     const allElement = document.querySelectorAll('.category');
 
@@ -25,6 +29,20 @@ catgs = categories;
     const button = document.getElementById(mycatg);
 
     button?.classList.add('selected');    
+    
+  }
+
+  getAds() {
+    this.adsService.getAds().valueChanges().subscribe(
+      (s) => {
+        console.log(s);
+        this.ads = s;
+
+      }, (e) => {
+        console.log(e);
+        
+      }
+    );
     
   }
 

@@ -22,7 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'ad-details',
+    path: 'ad-details/:id',
     loadChildren: () => import('./ad-details/ad-details.module').then( m => m.AdDetailsPageModule)
   },
   {

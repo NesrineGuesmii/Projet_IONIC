@@ -27,6 +27,10 @@ export class AuthService {
     return false;
   }
 
+  Owner() {
+    return this.ngFireAuth.currentUser;
+  }
+
   Logout() {
     localStorage.removeItem("ionicannonce--http--params");
     this.ngFireAuth.signOut();
