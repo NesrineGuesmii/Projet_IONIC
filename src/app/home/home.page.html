@@ -16,21 +16,11 @@
     <ion-row>
       <ion-col size="12">
         <ion-segment [scrollable]="true" color="transparent">
-          <ion-segment-button class="category" value="home" id="catg" (click)="AnimationSwitch('catg')">
-            <ion-button fill="outline" name="home">Categ One</ion-button>            
-          </ion-segment-button>
-          <ion-segment-button class="category" value="home2" id="catg2" (click)="AnimationSwitch('catg2')">
-            <ion-button fill="outline" name="home2">Categ Two</ion-button>            
-          </ion-segment-button>
-          <ion-segment-button class="category" value="home2">
-            <ion-button fill="outline" >Categ Two</ion-button>            
-          </ion-segment-button>
-          <ion-segment-button class="category" value="home2">
-            <ion-button fill="outline" >Categ Two</ion-button>            
-          </ion-segment-button>
-          <ion-segment-button class="category" value="home2">
-            <ion-button fill="outline" >Categ Two</ion-button>            
-          </ion-segment-button>
+          <ion-segment-button class="category" *ngFor="let c of catgs" value="home" id="{{c.title}}" (click)="AnimationSwitch('' + c.title +'')">
+            <h3>
+              {{c.title}} 
+            </h3>         
+          </ion-segment-button>          
         </ion-segment>
       </ion-col>
     </ion-row>

@@ -12,26 +12,33 @@
   </ion-grid>
 
   <!-- form -->
+  <form #f="ngForm" (ngSubmit)="onsubmit(f)">
+
   <ion-grid>
     <ion-row>
-      <ion-col size="12" >
-        <ion-list>
-          <ion-item class="form-control">
-            <ion-input label="Email Adress" type="email" labelPlacement="floating" placeholder="Enter email"></ion-input>
-          </ion-item>     
-          <ion-item class="form-control">
-            <ion-input label="Password" type="password" labelPlacement="floating" placeholder="Enter password"></ion-input>            
-          </ion-item> 
-          <p class="text-center">
-            <a href="">Forgot password?</a>
-          </p>
-        </ion-list>
-  
-        <ion-button class="btn" color="primary" expand="block">Log In</ion-button>
-  
-      </ion-col>
+        <ion-col size="12" >
+          <ion-list>
+            <ion-item class="form-control">
+              <ion-input label="Email Adress" type="email" name="email" ngModel labelPlacement="floating" placeholder="Enter email" required></ion-input>
+            </ion-item>     
+            <ion-item class="form-control">
+              <ion-input label="Password" type="password" name="password" ngModel labelPlacement="floating" placeholder="Enter password" required></ion-input>            
+            </ion-item> 
+            <p class="text-center">
+              <a href="">Forgot password?</a>
+            </p>
+          </ion-list>
+    
+          <ion-button class="btn" type="submit" color="primary" expand="block" *ngIf="!status.loading">Log In</ion-button>
+          <ion-button class="btn" type="submit" color="primary" expand="block" *ngIf="status.loading" disabled>
+            Loading &nbsp; <ion-spinner color=""></ion-spinner>
+          </ion-button>
+
+        </ion-col>
     </ion-row>
   </ion-grid>
+  
+  </form>
 
   <!-- divided zone -->
   <ion-grid align="center">

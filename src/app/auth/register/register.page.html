@@ -12,26 +12,31 @@
   </ion-grid>
 
   <!-- form -->
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" >
-        <ion-list>
-          <ion-item class="form-control">
-            <ion-input label="Full Name" type="text" labelPlacement="floating" placeholder="Enter full name"></ion-input>
-          </ion-item>  
-          <ion-item class="form-control">
-            <ion-input label="Email Adress" type="email" labelPlacement="floating" placeholder="Enter email"></ion-input>
-          </ion-item>     
-          <ion-item class="form-control">
-            <ion-input label="Password" type="password" labelPlacement="floating" placeholder="Enter password"></ion-input>            
-          </ion-item>           
-        </ion-list>
-  
-        <ion-button class="btn" color="primary" expand="block">Continue</ion-button>
-  
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form #f="ngForm" (ngSubmit)="onsubmit(f)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" >
+          <ion-list>
+            <ion-item class="form-control">
+              <ion-input label="Full Name" name="fullname" ngModel type="text" labelPlacement="floating" placeholder="Enter full name" required></ion-input>
+            </ion-item>  
+            <ion-item class="form-control">
+              <ion-input label="Email Address" name="email" ngModel type="email" labelPlacement="floating" placeholder="Enter email" required></ion-input>
+            </ion-item>     
+            <ion-item class="form-control">
+              <ion-input label="Password" name="password" ngModel type="password" labelPlacement="floating" placeholder="Enter password" required></ion-input>            
+            </ion-item>           
+          </ion-list>
+    
+          <ion-button class="btn" type="submit" color="primary" expand="block" *ngIf="!status.loading">Continue</ion-button>
+          <ion-button class="btn" type="submit" color="primary" expand="block" *ngIf="status.loading" disabled>
+            Loading &nbsp; <ion-spinner color=""></ion-spinner>
+          </ion-button>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 
   <!-- divided zone -->
   <ion-grid align="center">
