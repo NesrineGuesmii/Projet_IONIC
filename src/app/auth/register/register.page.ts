@@ -19,6 +19,7 @@ status = {
   }
 
 
+  // register function
   onsubmit(f: NgForm) {
     console.log(f.valid);
     console.log(f.value);

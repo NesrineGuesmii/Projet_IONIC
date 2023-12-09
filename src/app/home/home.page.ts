@@ -18,17 +18,17 @@ currentAds!: Array<Ads>;
   constructor(private adsService: AdsService, private router: Router) {}
 
   ngOnInit() {
-    this.getAds();
+    this.getAds(); // get all ads
   }
 
 
 
-  getAds() {
+  getAds() { // req firestore to get ads
     this.adsService.getAds().valueChanges().subscribe(
       (s) => {
         console.log(s);
-        this.ads = s;
-        this.currentAds = this.ads;
+        this.ads = s; 
+        this.currentAds = this.ads; // store in current variable (to change with categories)
       }, (e) => {
         console.log(e);
         
@@ -38,6 +38,7 @@ currentAds!: Array<Ads>;
   }
 
 
+  // function to select ad by category 
   selectTabsCategory(catg: string) {
     console.log(catg);
     
@@ -51,6 +52,7 @@ currentAds!: Array<Ads>;
   } 
 
 
+  // search ad by category
   search(type: any) {
     let tab = [];
     for (let i = 0; i < this.ads.length; i++) {
@@ -62,6 +64,7 @@ currentAds!: Array<Ads>;
     return tab;
   }
 
+  
   getSales() {
     this.currentAds = this.search("Sales");
     console.log(this.currentAds);

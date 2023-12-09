@@ -19,31 +19,33 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+
+  // login function
   onsubmit(f: NgForm) {
     console.log(f.valid);
     console.log(f.value);
     
     if (f.valid) {
-      this.status.loading = true;
+      this.status.loading = true; // spinner displaying
       this.auth = this.authService.SignIn(f.value.email, f.value.password).then (
         (s: any) => {
           // console.log(s.user._delegate.accessToken); 
-          localStorage.setItem('ionicannonce--http--params', JSON.stringify({
+          localStorage.setItem('ionicannonce--http--params', JSON.stringify({ // put on local storage
             token: s.user._delegate.accessToken,
             email: f.value.email
-          })); // crypt that !!! after hhh
+          })); // crypt it before store with crypt-js | features !
           this.router.navigateByUrl("/home");
           
         },(e: any) => {
           console.log(e);
-          this.animationService.showAlert("Error", "Email or password incorrect !");
-          this.status.loading = false;
+          this.animationService.showAlert("Error", "Email or password incorrect !"); // display error alert
+          this.status.loading = false; // spinner stop
         }          
       );      
       
     } else {
       this.animationService.showAlert("Empty !", "Please fill well the form !");
-      this.status.loading = false;
+      this.status.loading = false;  // spinner stop
     }
     
   }

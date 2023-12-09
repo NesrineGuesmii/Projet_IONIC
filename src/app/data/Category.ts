@@ -1,3 +1,6 @@
+/**
+ * Categories data 
+ */
 export const categories = [
     {
         title: "All"

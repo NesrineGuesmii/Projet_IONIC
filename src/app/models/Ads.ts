@@ -1,3 +1,6 @@
+/**
+ * Model for Ads
+ */
 export class Ads {
     title: string | undefined;
     img: string | undefined;

@@ -48,17 +48,19 @@ export class AdDetailsPage implements OnInit {
     
   }
 
+  // Open/Close the modal
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
 
 
+  // get ad by title -> req firestore
   getAdByTitle(title: string) {
     this.adService.getAdByTitle(title).valueChanges().subscribe(
       (s) => {
-        console.log(s);
+        // console.log(s);
         this.ad = s[0];
-        if (this.ad.owner == this.authService.Owner()) this.isOwner = true;
+        if (this.ad.owner == this.authService.Owner()) this.isOwner = true; // verify if ad is created by the current user
       }, (e) => {
         console.log(e);
         
@@ -66,20 +68,24 @@ export class AdDetailsPage implements OnInit {
     );
   }
 
+  // assign data update variable with the current ad
   edit() {
     this.data = this.ad;
   }
 
+  // close modal (doc)
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }
 
+  // confirm button modal
   confirm() {
     
-    this.onupdate(this.data)
+    this.onupdate(this.data) // update function call
     // this.modal.dismiss(this.name, 'confirm');
   }
 
+  // close modal trigger (doc) | not necessary
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
@@ -96,12 +102,13 @@ export class AdDetailsPage implements OnInit {
         this.cancel();
 
       }, (e) => {
-        this.animationService.showAlert("Error in saving !", "Please verify your ad !");
+        this.animationService.showAlert("Error in saving !", "Please verify your ad !"); // error animation
       }
     )
   }
 
 
+  // get ID collection
   async getIDCollection() {
     this.adService.getAds().get().subscribe(
       (s) => {
@@ -110,7 +117,7 @@ export class AdDetailsPage implements OnInit {
           if (doc.data().title === this.ad.title) {
             // transfer to delete function
             console.log(doc.id);
-            this.idCollection = doc.id;            
+            this.idCollection = doc.id;  // put id on variable (use to delete later)          
           }       
         });
       }, (e) => {
@@ -121,6 +128,7 @@ export class AdDetailsPage implements OnInit {
   }
 
 
+  // alert to delete 
   async decisionAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header: header,
@@ -146,7 +154,7 @@ export class AdDetailsPage implements OnInit {
     alert.present();
   }
 
-  delete() {
+  delete() { // delete function - req firestore 
     console.log(this.idCollection);
     
     this.adService.deleteAd(this.idCollection).then(
@@ -158,6 +166,8 @@ export class AdDetailsPage implements OnInit {
     )
   }
 
+
+  // display alert deleting
   deleteAd() {
     console.log(this.idCollection);
     

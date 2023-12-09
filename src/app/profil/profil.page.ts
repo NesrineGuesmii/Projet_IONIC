@@ -32,9 +32,9 @@ owner: any;
   constructor(private adService: AdsService, private animationService: AnimationService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    console.log(this.catgs);
-    this.getOwnAds();
-    this.owner = this.authService.Owner();
+    // console.log(this.catgs);
+    this.getOwnAds(); // get ads of current user
+    this.owner = this.authService.Owner(); // get email of current user
   }
 
 
@@ -60,7 +60,7 @@ owner: any;
   }
 
 
-  onsubmit(data: Ads) {
+  onsubmit(data: Ads) { // create an ad - req firestore
     data.owner = this.authService.Owner();
     console.log(data);
 
