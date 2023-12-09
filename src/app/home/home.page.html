@@ -16,10 +16,10 @@
     <ion-row>
       <ion-col size="12">
         <ion-segment [scrollable]="true" color="transparent">
-          <ion-segment-button class="category" *ngFor="let c of catgs" value="home" id="{{c.title}}" (click)="AnimationSwitch('' + c.title +'')">
-            <h3>
+          <ion-segment-button class="category" *ngFor="let c of catgs" value="home" id="{{c.title}}" (click)="selectTabsCategory(c.title)">
+            <h5>
               {{c.title}} 
-            </h3>         
+            </h5>         
           </ion-segment-button>          
         </ion-segment>
       </ion-col>
@@ -30,8 +30,8 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let a of ads">
-        <ion-card routerLink="/ad-details/{{a.id}}">
+      <ion-col size="6" *ngFor="let a of currentAds">
+        <ion-card (click)="goToDetail(a.title)">
           <img alt="Silhouette of mountains" src="{{a.img}}" />
           <ion-card-header>
             <ion-card-title>{{a.title}}</ion-card-title>

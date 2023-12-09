@@ -28,7 +28,10 @@ export class LoginPage implements OnInit {
       this.auth = this.authService.SignIn(f.value.email, f.value.password).then (
         (s: any) => {
           // console.log(s.user._delegate.accessToken); 
-          localStorage.setItem('ionicannonce--http--params', s.user._delegate.accessToken); // crypt that !!! after hhh
+          localStorage.setItem('ionicannonce--http--params', JSON.stringify({
+            token: s.user._delegate.accessToken,
+            email: f.value.email
+          })); // crypt that !!! after hhh
           this.router.navigateByUrl("/home");
           
         },(e: any) => {

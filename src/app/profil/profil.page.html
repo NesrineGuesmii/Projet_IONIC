@@ -4,7 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{title}}</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" (click)="logout()">
       <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
@@ -20,10 +20,8 @@
         </ion-avatar>
       </ion-col>
       <ion-col size="8" class="">
-        <h5 class="ml-1"><strong>James Dean</strong></h5>
-        <small class="ml-1">jamesdean&#64;gmail.com</small>
-        <br>
-        <small class="ml-1">+62 565996526</small>
+        <h5 class="ml-1"><strong>User</strong></h5>
+        <small class="ml-1">{{owner}}</small>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -33,25 +31,85 @@
   <ion-grid>
     <ion-list [inset]="true">
       <ion-list-header>
-        <ion-label>My Ads</ion-label>
+        <ion-label>
+          My Ads
+
+          <ion-button size="small" class="create-btn" id="open-modal">Create Ad</ion-button>
+        </ion-label>
       </ion-list-header>
-      <ion-item [button]="true" detail="false">
+      <ion-item [button]="true" detail="false" *ngFor="let a of ownAds">
         <div class="unread-indicator-wrapper" slot="start">
           <div class="unread-indicator"></div>
         </div>
         <ion-label>
-          <strong>Rick Astley</strong>
-          <ion-text>Never Gonna Give You Up</ion-text><br />
+          <strong>{{a.title}}</strong>
+          <ion-text>{{a.created_at}}</ion-text><br />
           <ion-note color="medium" class="ion-text-wrap">
-            Never gonna give you up Never gonna let you down Never gonna run...
+            {{a.description}}
           </ion-note>
         </ion-label>
         <div class="metadata-end-wrapper" slot="end">
-          <ion-note color="medium">06:11</ion-note>
-          <ion-icon color="medium" name="chevron-forward"></ion-icon>
+          <ion-icon color="medium" name="chevron-forward" (click)="goToDetail(a.title)"></ion-icon>
         </div>
       </ion-item>
       
     </ion-list>
   </ion-grid>
+
+
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <form >
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()" type="button">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Create Ad</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true" >Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+          <ion-item class="p-3">
+            <ion-input
+              label="Enter the title"
+              labelPlacement="stacked"
+              type="text"
+              placeholder="Your title"
+              name="title"
+              [(ngModel)]="data.title"
+              required
+            ></ion-input>
+          </ion-item>
+          <ion-item class="p-3">
+            <ion-select label="Select Category" placeholder="Ex: Sale" name="category" [(ngModel)]="data.category">
+              <ion-select-option *ngFor="let c of catgs" [value]="c.title" >{{ c.title }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="p-3">
+            <ion-input
+              label="Enter the URL Image"
+              labelPlacement="stacked"
+              type="text"
+              placeholder="https://image.com/zonfpsfknpdn"
+              name="img"
+              [(ngModel)]="data.img"
+              required
+            ></ion-input>
+          </ion-item>
+          <ion-item class="p-3">
+            <ion-textarea label="Stacked label" [autoGrow]="true" labelPlacement="stacked" placeholder="Enter text" name="description" [(ngModel)]="data.description"></ion-textarea>
+          </ion-item>
+      </ion-content>
+    </ng-template>
+  </form>
+
+  </ion-modal>
+
+
 </ion-content>
+
+
+

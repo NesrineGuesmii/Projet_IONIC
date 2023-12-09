@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { categories } from '../data/Category';
 import { AdsService } from '../services/ads.service';
 import { Ads } from '../models/Ads';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,33 +12,23 @@ import { Ads } from '../models/Ads';
 export class HomePage {
 catgs = categories;
 ads!: Array<Ads>;
-
-  constructor(private adsService: AdsService) {}
+sales: any;
+rent: any;
+currentAds!: Array<Ads>;
+  constructor(private adsService: AdsService, private router: Router) {}
 
   ngOnInit() {
     this.getAds();
   }
 
-  // deleted that
-  AnimationSwitch(mycatg: any) {
-    const allElement = document.querySelectorAll('.category');
 
-    allElement.forEach(element => {
-      element.classList.remove('selected');
-    });
-    
-    const button = document.getElementById(mycatg);
-
-    button?.classList.add('selected');    
-    
-  }
 
   getAds() {
     this.adsService.getAds().valueChanges().subscribe(
       (s) => {
         console.log(s);
         this.ads = s;
-
+        this.currentAds = this.ads;
       }, (e) => {
         console.log(e);
         
@@ -46,4 +37,46 @@ ads!: Array<Ads>;
     
   }
 
+
+  selectTabsCategory(catg: string) {
+    console.log(catg);
+    
+    if (catg === "Rent") {
+      this.getRent();
+    } else if (catg === "Sales") {
+      this.getSales();
+    } else {
+      this.getAll();
+    }
+  } 
+
+
+  search(type: any) {
+    let tab = [];
+    for (let i = 0; i < this.ads.length; i++) {
+      if (this.ads[i].category === type) {
+        tab.push(this.ads[i]);
+      }      
+    }
+
+    return tab;
+  }
+
+  getSales() {
+    this.currentAds = this.search("Sales");
+    console.log(this.currentAds);
+  }
+
+  getRent() {
+    this.currentAds = this.search("Rent");
+    console.log(this.currentAds);
+  }
+
+  getAll() {    
+    this.currentAds = this.ads;
+  }
+
+  goToDetail(title: any) {    
+    this.router.navigateByUrl("/ad-details/" + title);
+  }
 }

@@ -28,7 +28,12 @@ export class AuthService {
   }
 
   Owner() {
-    return this.ngFireAuth.currentUser;
+    const l = localStorage.getItem('ionicannonce--http--params');
+    if (l) {
+      const lJSON = JSON.parse(l);
+      return lJSON.email;
+    }
+    return "";
   }
 
   Logout() {

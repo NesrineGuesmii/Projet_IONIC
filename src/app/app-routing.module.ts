@@ -4,14 +4,14 @@ import { GuardGuard } from './services/auth/guard.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [GuardGuard]
-  },
-  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate: [GuardGuard]
   },
   {
     path: 'login',
@@ -22,12 +22,15 @@ const routes: Routes = [
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'ad-details/:id',
-    loadChildren: () => import('./ad-details/ad-details.module').then( m => m.AdDetailsPageModule)
+    path: 'ad-details/:title',
+    loadChildren: () => import('./ad-details/ad-details.module').then( m => m.AdDetailsPageModule),
+    canActivate: [GuardGuard]
   },
   {
     path: 'profil',
-    loadChildren: () => import('./profil/profil.module').then( m => m.ProfilPageModule)
+    loadChildren: () => import('./profil/profil.module').then( m => m.ProfilPageModule),
+    canActivate: [GuardGuard]
+
   },
 ];
 
